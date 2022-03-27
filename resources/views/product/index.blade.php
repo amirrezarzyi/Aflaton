@@ -26,7 +26,7 @@
             <div class="col-12 mb-30">
                 <div class="box">
                     <div class="box-head">
-                        <a href="" class="btn btn-primary"><span class="ti-plus"></span> ایجاد محصول جدید</a>
+                        <a href="{{Route('admin.products.create')}}" class="btn btn-primary"><span class="ti-plus"></span> ایجاد محصول جدید</a>
                     </div>
                     <div class="box-body">
                         <table class="table table-bordered data-table data-table-default">
@@ -41,34 +41,25 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {{-- @foreach($users as $user) --}}
+                            @foreach($products as $product)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td> 
-                                <td></td>
-                                <td></td>
+                                <td>{{$product->name}}</td>
+                                <td>{{$product->description}}</td>
+                                <td>{{$product->price}}</td>
+                                <td>{{$product->created_at}}</td>
+                                <td>{{$product->updated_at}}</td>
                                 <td>
-                                    <a href="" class="btn btn-outline-info btn-sm"><span class="ti-user"></span> نمایش</a>
-                                    <a href="" class="btn btn-outline-success btn-sm"><span class="ti-reload"></span> ویرایش</a>
-                                    <a href="" class="btn btn-outline-danger btn-sm"><span class="ti-close"></span> حذف</a>
-                                    {{-- <a href="{{ route('user.show', $user->id) }}" class="btn btn-outline-info btn-sm"><span class="ti-user"></span> نمایش</a>
-                                    <a href="{{ route('user.edit', $user->id) }}" class="btn btn-outline-success btn-sm"><span class="ti-reload"></span> ویرایش</a>
-                                    <a href="{{ route('user.destroy', $user->id) }}" class="btn btn-outline-danger btn-sm"><span class="ti-close"></span> حذف</a> --}}
-                                </td>
+                                    <a href="{{route('admin.products.show',$product->id)}}" class="btn btn-outline-info btn-sm"><span class="ti-user"></span> نمایش</a>
+                                    <a href="{{route('admin.products.edit',$product->id)}}" class="btn btn-outline-success btn-sm"><span class="ti-reload"></span> ویرایش</a>
+                                    <form action="{{route('admin.products.destroy',$product->id)}}" method="post" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                    <button type="submit" class="btn btn-outline-danger btn-sm"><span class="ti-close"></span> حذف</a>
+                                    </form>
+                                    </td>
                             </tr>
-                            {{-- @endforeach --}}
+                            @endforeach
                             </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>#</th>
-                                <th>نام</th>
-                                <th>ایمیل</th>
-                                <th>تاریخ ایجاد</th>
-                                <th>تاریخ ویرایش</th>
-                                <th>عملیات</th>
-                            </tr>
-                            </tfoot>
                         </table>
                     </div>
                 </div>
