@@ -22,21 +22,26 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
-        dd($inputs);
+        Product::create($inputs);
+        return redirect()->route('admin.products.index');
+
     }
 
-    public function edit()
+    public function edit(Product $product)
     {
-        return view('product.craete');
+        return view('product.edit',compact('product'));
     }
 
-    public function update()
+    public function update(Request $request,Product $product)
     {
-        return view('product.craete');
+        $inputs = $request->all();
+        $product->update($inputs);
+        return redirect()->route('admin.products.index');
     }
 
-    public function destroy()
+    public function destroy(Product $product)
     {
-        return view('product.craete');
+        $product->delete();
+        return redirect()->route('admin.products.index');
     }
 }

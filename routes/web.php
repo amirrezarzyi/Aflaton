@@ -17,7 +17,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
        Route::prefix('products')->group(function(){
           Route::get('/', [App\Http\Controllers\Admin\ProductController::class , 'index'])->name('admin.products.index');
           Route::get('/create', [App\Http\Controllers\Admin\ProductController::class , 'create'])->name('admin.products.create');
-          Route::post('/store', [App\Http\Controllers\Admin\ProductController::class , 'store'])->name('admin.market.store');
+          Route::post('/store', [App\Http\Controllers\Admin\ProductController::class , 'store'])->name('admin.products.store');
           Route::get('/show/{product}', [App\Http\Controllers\Admin\ProductController::class , 'show'])->name('admin.products.show');
           Route::get('/edit/{product}', [App\Http\Controllers\Admin\ProductController::class , 'edit'])->name('admin.products.edit');
           Route::put('/update/{product}', [App\Http\Controllers\Admin\ProductController::class , 'update'])->name('admin.products.update');

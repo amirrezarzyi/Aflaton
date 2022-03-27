@@ -49,7 +49,7 @@
                                 <td>{{$product->created_at}}</td>
                                 <td>{{$product->updated_at}}</td>
                                 <td>
-                                    <a href="{{route('admin.products.show',$product->id)}}" class="btn btn-outline-info btn-sm"><span class="ti-user"></span> نمایش</a>
+                                    {{-- <a href="{{route('admin.products.show',$product->id)}}" class="btn btn-outline-info btn-sm"><span class="ti-user"></span> نمایش</a> --}}
                                     <a href="{{route('admin.products.edit',$product->id)}}" class="btn btn-outline-success btn-sm"><span class="ti-reload"></span> ویرایش</a>
                                     <form action="{{route('admin.products.destroy',$product->id)}}" method="post" class="d-inline">
                                         @csrf
