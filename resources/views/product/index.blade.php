@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('head-tag')
-    <title>کاربران</title>
+    <title>محصولات</title>
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
             <!-- Page Heading Start -->
             <div class="col-12 col-lg-auto mb-20">
                 <div class="page-heading">
-                    <h3 class="title">کاربران</h3>
+                    <h3 class="title">محصولات</h3>
                 </div>
             </div><!-- Page Heading End -->
 
@@ -26,35 +26,38 @@
             <div class="col-12 mb-30">
                 <div class="box">
                     <div class="box-head">
-                        <a href="{{ route('user.create') }}" class="btn btn-primary"><span class="ti-plus"></span> ایجاد کاربر جدید</a>
+                        <a href="" class="btn btn-primary"><span class="ti-plus"></span> ایجاد محصول جدید</a>
                     </div>
                     <div class="box-body">
                         <table class="table table-bordered data-table data-table-default">
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>نام</th>
-                                <th>ایمیل</th>
-                                <th>تاریخ ایجاد</th>
+                                <th>نام محصول</th>
+                                <th>قیمت محصول</th>
+                                <th>تاریخ ثبت</th>
                                 <th>تاریخ ویرایش</th>
                                 <th>عملیات</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($users as $user)
+                            {{-- @foreach($users as $user) --}}
                             <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->created_at }}</td>
-                                <td>{{ $user->updated_at }}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td> 
+                                <td></td>
+                                <td></td>
                                 <td>
-                                    <a href="{{ route('user.show', $user->id) }}" class="btn btn-outline-info btn-sm"><span class="ti-user"></span> نمایش</a>
+                                    <a href="" class="btn btn-outline-info btn-sm"><span class="ti-user"></span> نمایش</a>
+                                    <a href="" class="btn btn-outline-success btn-sm"><span class="ti-reload"></span> ویرایش</a>
+                                    <a href="" class="btn btn-outline-danger btn-sm"><span class="ti-close"></span> حذف</a>
+                                    {{-- <a href="{{ route('user.show', $user->id) }}" class="btn btn-outline-info btn-sm"><span class="ti-user"></span> نمایش</a>
                                     <a href="{{ route('user.edit', $user->id) }}" class="btn btn-outline-success btn-sm"><span class="ti-reload"></span> ویرایش</a>
-                                    <a href="{{ route('user.destroy', $user->id) }}" class="btn btn-outline-danger btn-sm"><span class="ti-close"></span> حذف</a>
+                                    <a href="{{ route('user.destroy', $user->id) }}" class="btn btn-outline-danger btn-sm"><span class="ti-close"></span> حذف</a> --}}
                                 </td>
                             </tr>
-                            @endforeach
+                            {{-- @endforeach --}}
                             </tbody>
                             <tfoot>
                             <tr>
