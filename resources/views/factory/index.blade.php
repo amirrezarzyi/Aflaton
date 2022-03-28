@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('head-tag')
-    <title>محصولات</title>
+    <title>فاکتورها</title>
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
             <!-- Page Heading Start -->
             <div class="col-12 col-lg-auto mb-20">
                 <div class="page-heading">
-                    <h3 class="title">محصولات</h3>
+                    <h3 class="title">فاکتورها</h3>
                 </div>
             </div><!-- Page Heading End -->
 
@@ -26,32 +26,34 @@
             <div class="col-12 mb-30">
                 <div class="box">
                     <div class="box-head">
-                        <a href="{{Route('admin.products.create')}}" class="btn btn-primary"><span class="ti-plus"></span> ایجاد محصول جدید</a>
+                        <a href="{{Route('admin.factories.create')}}" class="btn btn-primary"><span class="ti-plus"></span> ایجاد فاکتور جدید</a>
                     </div>
                     <div class="box-body">
                         <table class="table table-bordered data-table data-table-default">
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>نام محصول</th>
-                                <th>قیمت محصول</th>
-                                <th>تاریخ ثبت</th>
+                                <th>عنوان فاکتور</th>
+                                <th>شخص/شرکت</th>
+                                <th>شماره فاکتور</th>
+                                <th>تاریخ ثبت فاکتور</th>
                                 <th>تاریخ ویرایش</th>
                                 <th>عملیات</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($products as $product)
+                            @foreach($factories as $factory)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$product->name}}</td> 
-                                <td>{{$product->price}}</td>
-                                <td>{{$product->created_at}}</td>
-                                <td>{{$product->updated_at}}</td>
+                                <td>{{$factory->title}}</td>
+                                <td>{{$factory->full_name}}</td>
+                                <td>{{$factory->code}}</td>
+                                <td>{{$factory->created_at}}</td>
+                                <td>{{$factory->updated_at}}</td>
                                 <td>
-                                    {{-- <a href="{{route('admin.products.show',$product->id)}}" class="btn btn-outline-info btn-sm"><span class="ti-user"></span> نمایش</a> --}}
-                                    <a href="{{route('admin.products.edit',$product->id)}}" class="btn btn-outline-success btn-sm"><span class="ti-reload"></span> ویرایش</a>
-                                    <form action="{{route('admin.products.destroy',$product->id)}}" method="post" class="d-inline">
+                                    <a href="{{route('admin.factories.show',$factory->id)}}" class="btn btn-outline-info btn-sm"><span class="ti-user"></span> نمایش</a>
+                                    <a href="{{route('admin.factories.edit',$factory->id)}}" class="btn btn-outline-success btn-sm"><span class="ti-reload"></span> ویرایش</a>
+                                    <form action="{{route('admin.factories.destroy',$factory->id)}}" method="post" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                     <button type="submit" class="btn btn-outline-danger btn-sm"><span class="ti-close"></span> حذف</a>

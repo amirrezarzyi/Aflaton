@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class Factory extends Model
 {
     use HasFactory,SoftDeletes;
 
-    protected $fillable = ['name','description','price'];
+    protected $fillable = ['title','code','full_name'];
 
-    public function factories()
+    public function products()
     {
-        return $this->belongsToMany(Factory::class);
+        return $this->belongsToMany(Product::class);
     }
 }

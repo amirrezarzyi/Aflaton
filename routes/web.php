@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FactorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -8,30 +9,46 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('admin')->namespace('Admin')->group(function(){
+Route::prefix('admin')->namespace('Admin')->group(function () {
 
     //داشبورد
-    Route::get('/', [App\Http\Controllers\Admin\DashboardController::class , 'index'])->name('admin.home');
+    Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.home');
 
-       //محصولات
-       Route::prefix('products')->group(function(){
-          Route::get('/', [App\Http\Controllers\Admin\ProductController::class , 'index'])->name('admin.products.index');
-          Route::get('/create', [App\Http\Controllers\Admin\ProductController::class , 'create'])->name('admin.products.create');
-          Route::post('/store', [App\Http\Controllers\Admin\ProductController::class , 'store'])->name('admin.products.store');
-          Route::get('/show/{product}', [App\Http\Controllers\Admin\ProductController::class , 'show'])->name('admin.products.show');
-          Route::get('/edit/{product}', [App\Http\Controllers\Admin\ProductController::class , 'edit'])->name('admin.products.edit');
-          Route::put('/update/{product}', [App\Http\Controllers\Admin\ProductController::class , 'update'])->name('admin.products.update');
-          Route::delete('/destroy/{product}', [App\Http\Controllers\Admin\ProductController::class , 'destroy'])->name('admin.products.destroy');
-       });
+    //محصولات
+    Route::prefix('products')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\ProductController::class, 'index'])->name('admin.products.index');
+        Route::get('/create', [App\Http\Controllers\Admin\ProductController::class, 'create'])->name('admin.products.create');
+        Route::post('/store', [App\Http\Controllers\Admin\ProductController::class, 'store'])->name('admin.products.store');
+        Route::get('/show/{product}', [App\Http\Controllers\Admin\ProductController::class, 'show'])->name('admin.products.show');
+        Route::get('/edit/{product}', [App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('admin.products.edit');
+        Route::put('/update/{product}', [App\Http\Controllers\Admin\ProductController::class, 'update'])->name('admin.products.update');
+        Route::delete('/destroy/{product}', [App\Http\Controllers\Admin\ProductController::class, 'destroy'])->name('admin.products.destroy');
+    });
 
-       //قراردادها
-       Route::prefix('factories')->group(function(){
-          Route::get('/', [App\Http\Controllers\Admin\FactorController::class , 'index'])->name('admin.factories.index');
-          Route::get('/create', [App\Http\Controllers\Admin\FactorController::class , 'create'])->name('admin.factories.create');
-          Route::post('/store', [App\Http\Controllers\Admin\FactorController::class , 'store'])->name('admin.factories.store');
-          Route::get('/edit/{factory}', [App\Http\Controllers\Admin\FactorController::class , 'edit'])->name('admin.factories.edit');
-          Route::put('/update/{factory}', [App\Http\Controllers\Admin\FactorController::class , 'update'])->name('admin.factories.update');
-          Route::delete('/destroy/{factory}', [App\Http\Controllers\Admin\FactorController::class , 'destroy'])->name('admin.factories.destroy');
-       });
+    //فاکتورها
+    Route::prefix('factories')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\FactorController::class, 'index'])->name('admin.factories.index');
+        Route::get('/create', [App\Http\Controllers\Admin\FactorController::class, 'create'])->name('admin.factories.create');
+        Route::post('/store', [App\Http\Controllers\Admin\FactorController::class, 'store'])->name('admin.factories.store');
+        Route::get('/show/{factory}', [App\Http\Controllers\Admin\FactorController::class, 'show'])->name('admin.factories.show');
+        Route::delete('/show/destroy/{product}/{factory}', [App\Http\Controllers\Admin\FactorController::class, 'deleteProduct'])->name('admin.factories.deleteProduct');
+        Route::get('/edit/{factory}', [App\Http\Controllers\Admin\FactorController::class, 'edit'])->name('admin.factories.edit');
+        Route::put('/update/{factory}', [App\Http\Controllers\Admin\FactorController::class, 'update'])->name('admin.factories.update');
+        Route::delete('/destroy/{factory}', [App\Http\Controllers\Admin\FactorController::class, 'destroy'])->name('admin.factories.destroy');
+    });
 
- });
+    // Route::controller(FactorController::class)->prefix('factories')
+    //     ->name('admin.factories')
+    //     ->group(function () {
+    //         Route::get('/', 'index')->name('index');
+    //         Route::get('/create', 'create')->name('create');
+    //         Route::post('/store', 'store')->name('store');
+    //         Route::get('/show/{factory}', 'show')->name('show');
+
+    //         Route::post('/show/destroy/{product}', 'deleteProduct')->name('deleteProduct');
+
+    //         Route::get('/edit/{factory}', 'edit')->name('edit');
+    //         Route::put('/update/{factory}', 'update')->name('update');
+    //         Route::delete('/destroy/{factory}', 'destroy')->name('destroy');
+    //     });
+});
