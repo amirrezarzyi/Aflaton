@@ -29,14 +29,14 @@
                      <!--Form Field-->
                      <div class="col-6 mb-15"><input name="title" type="text" class="form-control" placeholder="عنوان فاکتور"></div>
                      <div class="col-6 mb-15"><input name="full_name" type="text" class="form-control" placeholder="نام گیرنده فاکتور"></div>
-                     <div class="col-lg-4 col-12 mb-20"> 
+                     {{-- <div class="col-lg-4 col-12 mb-20">
                         <h6 class="mb-15">محصولات</h6>
                         <select class="form-control" multiple name="products[]">
                             @foreach($products as $product)
                             <option value="{{$product->id}}">{{$product->name}}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> --}}
                  </div>
                </div>
                <div style="float: left">

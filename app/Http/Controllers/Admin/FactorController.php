@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\FactorItem;
 use App\Models\Admin\Factory;
 use App\Models\Admin\Product;
 use Illuminate\Http\Request;
@@ -25,29 +26,33 @@ class FactorController extends Controller
 
     public function store(Request $request)
     {
-        // // $inputs = $request->all();
-        // $factory = new Factory();
-        // $factory->code = Str::random(5);
-        // $factory->title =$request->title;
-        // $factory->full_name =$request->full_name;
-        // $factory->save();
-        // $factory->products()->attach($request->products);
         $factory = Factory::create([
             'code' => Str::random(5),
             'title' =>$request->title,
             'full_name' => $request->full_name,
-        ]);
+    ]);
+        // $factory->products()->attach($request->input('products'));
 
-        $factory->products()->attach($request->input('products'));
-
-        return redirect()->route('admin.factories.index');
+        return redirect()->route('admin.factories.show',$factory->id);
 
     }
 
     public function show(Factory $factory)
     {
-        $products = $factory->products;
-        return view('factory.show',compact('factory','products'));
+        $P_amounts = FactorItem::where('factory_id',$factory->id)->pluck('amount');
+        $P_prices  = FactorItem::where('factory_id',$factory->id)->pluck('price');
+        $P_numbers = FactorItem::where('factory_id',$factory->id)->pluck('number');
+
+        $amounts = 0;
+        $prices  = 0;
+        $numbers = 0;
+
+        foreach ($P_amounts as $amount) { $amounts += $amount; }
+        foreach ($P_prices  as $price)  { $prices += $price;   }
+        foreach ($P_numbers as $number) { $numbers += $number; }
+
+        $products = FactorItem::where('factory_id',$factory->id)->get();
+        return view('factory.show',compact('factory','products','amounts','prices','numbers'));
     }
 
     public function edit(Factory $factory)
@@ -74,9 +79,10 @@ class FactorController extends Controller
         return redirect()->route('admin.factories.index');
     }
 
-    public function deleteProduct($proId, Factory $factory)
-    {
-        $factory->products()->detach([$proId]);
-        return redirect()->route('admin.factories.show',$factory->id);
-    }
+    // public function deleteProduct($proId, Factory $factory)
+    // {
+    //     $factory->products()->detach([$proId]);
+    //     return redirect()->route('admin.factories.show',$factory->id);
+    // }
+
 }

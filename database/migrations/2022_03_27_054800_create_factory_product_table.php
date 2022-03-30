@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained('products');
             $table->foreignId('factory_id')->constrained('factories');
+            $table->integer('number')->nullable();
+            $table->decimal('price', 10, 3)->nullable();
+            $table->decimal('amount', 10, 3)->nullable();
             $table->timestamps();
         });
     }

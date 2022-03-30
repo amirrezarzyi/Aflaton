@@ -37,6 +37,14 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
         Route::delete('/destroy/{factory}', [App\Http\Controllers\Admin\FactorController::class, 'destroy'])->name('admin.factories.destroy');
     });
 
+    //آیتم های فاکتور
+    Route::prefix('items')->group(function () {
+        Route::get('{factory}/create', [App\Http\Controllers\Admin\FactorItemController::class, 'create'])->name('admin.items.create');
+        Route::post('{factory}/store', [App\Http\Controllers\Admin\FactorItemController::class, 'store'])->name('admin.items.store');
+        Route::put('/update/{factorItem}', [App\Http\Controllers\Admin\FactorItemController::class, 'update'])->name('admin.items.update');
+        Route::delete('destroy/{factorItem}', [App\Http\Controllers\Admin\FactorItemController::class, 'destroy'])->name('admin.items.destroy');
+    });
+
     // Route::controller(FactorController::class)->prefix('factories')
     //     ->name('admin.factories')
     //     ->group(function () {
